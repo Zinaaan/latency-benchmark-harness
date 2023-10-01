@@ -13,18 +13,16 @@ import net.openhft.chronicle.jlbh.JLBHTask;
  */
 public class ChronicleBytesReadWriteTask implements JLBHTask {
 
-    private final static Bytes<byte[]> REUSABLE_BYTES = Bytes.allocateElasticOnHeap();
-
+    private final static Bytes<byte[]> REUSABLE_BYTES = Bytes.allocateElasticOnHeap(16);
     private JLBH jlbh;
-
     private NanoSampler readSampler;
     private NanoSampler writeSampler;
 
     @Override
     public void init(JLBH jlbh) {
         this.jlbh = jlbh;
-        readSampler = jlbh.addProbe("Read Bytes");
-        writeSampler = jlbh.addProbe("WriteBytes Bytes");
+        readSampler = jlbh.addProbe("Chronicle Read Bytes");
+        writeSampler = jlbh.addProbe("Chronicle Write Bytes");
     }
 
     @Override

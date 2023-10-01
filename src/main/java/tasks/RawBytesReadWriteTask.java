@@ -21,8 +21,8 @@ public class RawBytesReadWriteTask implements JLBHTask {
     @Override
     public void init(JLBH jlbh) {
         this.jlbh = jlbh;
-        readSampler = jlbh.addProbe("Read Bytes");
-        writeSampler = jlbh.addProbe("WriteBytes Bytes");
+        readSampler = jlbh.addProbe("RawBytes Read Bytes");
+        writeSampler = jlbh.addProbe("RawBytes Write Bytes");
     }
 
     @Override

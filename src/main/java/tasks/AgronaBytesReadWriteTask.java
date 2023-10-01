@@ -14,7 +14,6 @@ public class AgronaBytesReadWriteTask implements JLBHTask {
 
     private final byte[] bufferBytes = new byte[16];
     private final UnsafeBuffer unsafeBuffer = new UnsafeBuffer(bufferBytes);
-
     private JLBH jlbh;
     private NanoSampler readSampler;
     private NanoSampler writeSampler;
@@ -22,8 +21,8 @@ public class AgronaBytesReadWriteTask implements JLBHTask {
     @Override
     public void init(JLBH jlbh) {
         this.jlbh = jlbh;
-        readSampler = jlbh.addProbe("Read Bytes");
-        writeSampler = jlbh.addProbe("WriteBytes Bytes");
+        readSampler = jlbh.addProbe("Agrona Read Bytes");
+        writeSampler = jlbh.addProbe("Agrona Write Bytes");
     }
 
     @Override
