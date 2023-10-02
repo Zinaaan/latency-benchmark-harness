@@ -1,16 +1,18 @@
+package tasks.bytes;
+
 import net.openhft.chronicle.jlbh.JLBH;
 import net.openhft.chronicle.jlbh.JLBHOptions;
 import net.openhft.chronicle.jlbh.JLBHTask;
-import tasks.AgronaBytesReadWriteTask;
-import tasks.ChronicleBytesReadWriteTask;
-import tasks.RawBytesReadWriteTask;
+import tasks.bytes.AgronaBytesReadWriteTask;
+import tasks.bytes.ChronicleBytesReadWriteTask;
+import tasks.bytes.RawBytesReadWriteTask;
 
 /**
  * @author lzn
  * @date 2023/10/01 16:56
  * @description
  */
-public class BenchmarkRunner {
+public class BytesBenchmarkRunner {
 
     public static void main(String[] args) {
         JLBHOptions lbhOptions = generateOptions(new ChronicleBytesReadWriteTask());

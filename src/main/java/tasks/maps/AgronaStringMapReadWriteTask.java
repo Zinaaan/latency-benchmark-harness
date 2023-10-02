@@ -1,28 +1,27 @@
-package tasks;
+package tasks.maps;
 
 import net.openhft.chronicle.core.util.NanoSampler;
 import net.openhft.chronicle.jlbh.JLBH;
 import net.openhft.chronicle.jlbh.JLBHTask;
-import org.agrona.concurrent.UnsafeBuffer;
+import org.agrona.collections.Object2ObjectHashMap;
 
 /**
  * @author lzn
- * @date 2023/10/01 17:19
+ * @date 2023/10/01 23:00
  * @description
  */
-public class AgronaBytesReadWriteTask implements JLBHTask {
-
-    private final byte[] bufferBytes = new byte[16];
-    private final UnsafeBuffer unsafeBuffer = new UnsafeBuffer(bufferBytes);
+public class AgronaStringMapReadWriteTask implements JLBHTask {
     private JLBH jlbh;
     private NanoSampler readSampler;
     private NanoSampler writeSampler;
 
+    private final Object2ObjectHashMap<String, String> map = new Object2ObjectHashMap<>();
+
     @Override
     public void init(JLBH jlbh) {
         this.jlbh = jlbh;
-        readSampler = jlbh.addProbe("Agrona Read Bytes");
-        writeSampler = jlbh.addProbe("Agrona Write Bytes");
+        readSampler = jlbh.addProbe("Agrona String Read Map");
+        writeSampler = jlbh.addProbe("Agrona String Write Map");
     }
 
     @Override
@@ -39,15 +38,10 @@ public class AgronaBytesReadWriteTask implements JLBHTask {
     }
 
     private void readData() {
-        int par1 = unsafeBuffer.getInt(0);
-        byte par2 = unsafeBuffer.getByte(4);
-        long par3 = unsafeBuffer.getLong(5);
+        map.get(RandomStringGenerator.generateRandomString(20));
     }
 
     private void writeData() {
-        long nano = System.nanoTime();
-        unsafeBuffer.putInt(0, 123);
-        unsafeBuffer.putByte(4, (byte) 0);
-        unsafeBuffer.putLong(5, System.nanoTime() - nano);
+        map.put(RandomStringGenerator.generateRandomString(20), "123");
     }
 }
